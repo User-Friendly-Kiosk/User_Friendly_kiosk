@@ -1,0 +1,525 @@
+<First>:
+    name: "first"
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'images/main.png'
+
+    FloatLayout:
+        Button:
+            pos_hint: {"x": 0.00001 , "top":0.99999}
+            size_hint: 1, 1
+            background_color: (0.0, 0.0, 0.0, 0.0)
+            on_release:
+                root.faceRecognition()
+
+<Face>:
+    name: "face"
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'images/face.png'
+
+
+<Select>:
+    name: "select"
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source:'images/first_main_2.png'
+
+    FloatLayout:
+
+        Image:
+            pos_hint: {"x":0.05, "top":0.7}
+            size_hint: 0.5, 0.5
+            source: 'images/in_store.png'
+
+
+        Label:
+            pos_hint: {"x":0.05, "top":0.19}
+            size_hint: 0.5, 0.1
+            halign: 'right'
+            valign: 'middle'
+            text: '매장에서 식사'
+            font_name:'NanumMyeongjo.ttf'
+            font_size: 50
+            color:0,0,0,1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Image:
+            pos_hint: {"x":0.45, "top":0.7}
+            size_hint: 0.5, 0.5
+            source: 'images/take_out.png'
+            on_touch_down:
+                root.manager.transition.direction = "left"
+                root.showMenu()
+
+        Label:
+            pos_hint: {"x":0.45, "top":0.19}
+            text: '포장'
+            size_hint: 0.5, 0.1
+            halign: 'right'
+            valign: 'middle'
+            font_name:'NanumMyeongjo.ttf'
+            font_size: 50
+            color:0,0,0,1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+    BoxLayout:
+        padding: 5
+        size_hint: (None, None)
+        size: (root.width, 100)
+        pos_hint: {"x": 0.00001 , "top":0.99999}
+        background_color: (0.0, 0.0, 0.0, 0.0)
+
+        Button:
+            text: '이전단계로'
+            font_name: 'NanumMyeongjo.ttf'
+            font_size: 14
+            size_hint_x: 0.8
+            size_hint_y: 0.5
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            on_press:
+                root.manager.transition.direction = "right"
+                root.backButton()
+
+        Label:
+            color:0,0,0,1
+            size_hint_x: 0.3
+            size_hint_y: 0.5
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Label:
+            text: '1.매장/포장'
+            font_name:'NanumMyeongjo.ttf'
+            font_size: 30
+            color:0,0,0,1
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 0, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Image :
+            source:'images/right-arrow.png'
+            size_hint_x: 0.4
+            size_hint_y: 0.5
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            allow_stretch: True
+
+        Label:
+            text: '2.음식 선택'
+            font_name:'NanumMyeongjo.ttf'
+            font_size: 30
+            color:0,0,0,1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Image :
+            source:'images/right-arrow.png'
+            size_hint_x: 0.4
+            size_hint_y: 0.5
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            allow_stretch: True
+
+        Label:
+            text: '3.결제/계산'
+            font_name:'NanumMyeongjo.ttf'
+            font_size: 30
+            color:0,0,0,1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Image :
+            source:'images/right-arrow.png'
+            size_hint_x: 0.4
+            size_hint_y: 0.5
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            allow_stretch: True
+
+        Label:
+            text: '4.주문 완료'
+            font_name:'NanumMyeongjo.ttf'
+            font_size: 30
+            color:0,0,0,1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+
+<ShowMenu>:
+    name: "ShowMenu"
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source:'images/default.png'
+
+    FloatLayout:
+        Button:
+            text: '결제'
+            font_name: 'NanumMyeongjo.ttf'
+            font_size: 14
+            size_hint_x: 0.8
+            size_hint_y: 0.5
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            on_press:
+                root.manager.transition.direction = "left"
+                root.payment()
+
+    BoxLayout:
+        padding: 5
+        size_hint: (None, None)
+        size: (root.width, 100)
+        pos_hint: {"x": 0.00001 , "top":0.99999}
+        background_color: (0.0, 0.0, 0.0, 0.0)
+
+        Button:
+            text: '이전단계로'
+            font_name: 'NanumMyeongjo.ttf'
+            font_size: 14
+            size_hint_x: 0.8
+            size_hint_y: 0.5
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            on_press:
+                root.manager.transition.direction = "right"
+                root.backButton()
+
+        Label:
+            color:0,0,0,1
+            size_hint_x: 0.3
+            size_hint_y: 0.5
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Label:
+            text: '1.매장/포장'
+            font_name:'NanumMyeongjo.ttf'
+            font_size: 30
+            color:0,0,0,1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Image :
+            source:'images/right-arrow.png'
+            size_hint_x: 0.4
+            size_hint_y: 0.5
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            allow_stretch: True
+
+        Label:
+            text: '2.음식 선택'
+            font_name:'NanumMyeongjo.ttf'
+            font_size: 30
+            color:0,0,0,1
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 0, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Image :
+            source:'images/right-arrow.png'
+            size_hint_x: 0.4
+            size_hint_y: 0.5
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            allow_stretch: True
+
+        Label:
+            text: '3.결제/계산'
+            font_name:'NanumMyeongjo.ttf'
+            font_size: 30
+            color:0,0,0,1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Image :
+            source:'images/right-arrow.png'
+            size_hint_x: 0.4
+            size_hint_y: 0.5
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            allow_stretch: True
+
+        Label:
+            text: '4.주문 완료'
+            font_name:'NanumMyeongjo.ttf'
+            font_size: 30
+            color:0,0,0,1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+<Payment>:
+    name: "Payment"
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source:'images/payment.png'
+
+    FloatLayout:
+        Button:
+            text: '결제가 끝났다는 가정하에 버튼을 누르면'
+            font_name: 'NanumMyeongjo.ttf'
+            font_size: 14
+            size_hint_x: 0.8
+            size_hint_y: 0.2
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            pos_hint: {"x": 0.1 , "top":0.7}
+            on_press:
+                root.manager.transition.direction = "left"
+                root.finish()
+
+    BoxLayout:
+        padding: 5
+        size_hint: (None, None)
+        size: (root.width, 100)
+        pos_hint: {"x": 0.00001 , "top":0.99999}
+        background_color: (0.0, 0.0, 0.0, 0.0)
+
+        Button:
+            text: '이전단계로'
+            font_name: 'NanumMyeongjo.ttf'
+            font_size: 14
+            size_hint_x: 0.8
+            size_hint_y: 0.5
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            on_press:
+                root.manager.transition.direction = "right"
+                root.backButton()
+
+        Label:
+            color:0,0,0,1
+            size_hint_x: 0.3
+            size_hint_y: 0.5
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Label:
+            text: '1.매장/포장'
+            font_name:'NanumMyeongjo.ttf'
+            font_size: 30
+            color:0,0,0,1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Image :
+            source:'images/right-arrow.png'
+            size_hint_x: 0.4
+            size_hint_y: 0.5
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            allow_stretch: True
+
+        Label:
+            text: '2.음식 선택'
+            font_name:'NanumMyeongjo.ttf'
+            font_size: 30
+            color:0,0,0,1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Image :
+            source:'images/right-arrow.png'
+            size_hint_x: 0.4
+            size_hint_y: 0.5
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            allow_stretch: True
+
+        Label:
+            text: '3.결제/계산'
+            font_name:'NanumMyeongjo.ttf'
+            font_size: 30
+            color:0,0,0,1
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 0, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Image :
+            source:'images/right-arrow.png'
+            size_hint_x: 0.4
+            size_hint_y: 0.5
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            allow_stretch: True
+
+        Label:
+            text: '4.주문 완료'
+            font_name:'NanumMyeongjo.ttf'
+            font_size: 30
+            color:0,0,0,1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+<Finish>:
+    name: "Finish"
+
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source:'images/default.png'
+
+    FloatLayout:
+
+    BoxLayout:
+        padding: 5
+        size_hint: (None, None)
+        size: (root.width, 100)
+        pos_hint: {"x": 0.00001 , "top":0.99999}
+        background_color: (0.0, 0.0, 0.0, 0.0)
+
+        Button:
+            size_hint_x: 0.8
+            size_hint_y: 0.5
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            background_color: (0.0, 0.0, 0.0, 0.0)
+
+        Label:
+            color:0,0,0,1
+            size_hint_x: 0.3
+            size_hint_y: 0.5
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Label:
+            text: '1.매장/포장'
+            font_name:'NanumMyeongjo.ttf'
+            font_size: 30
+            color:0,0,0,1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Image :
+            source:'images/right-arrow.png'
+            size_hint_x: 0.4
+            size_hint_y: 0.5
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            allow_stretch: True
+
+        Label:
+            text: '2.음식 선택'
+            font_name:'NanumMyeongjo.ttf'
+            font_size: 30
+            color:0,0,0,1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Image :
+            source:'images/right-arrow.png'
+            size_hint_x: 0.4
+            size_hint_y: 0.5
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            allow_stretch: True
+
+        Label:
+            text: '3.결제/계산'
+            font_name:'NanumMyeongjo.ttf'
+            font_size: 30
+            color:0,0,0,1
+            canvas.before:
+                Color:
+                    rgba: 1, 1, 1, 0
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+        Image :
+            source:'images/right-arrow.png'
+            size_hint_x: 0.4
+            size_hint_y: 0.5
+            pos_hint: {'center_x': .5, 'center_y': .5}
+            allow_stretch: True
+
+        Label:
+            text: '4.주문 완료'
+            font_name:'NanumMyeongjo.ttf'
+            font_size: 30
+            color:0,0,0,1
+            canvas.before:
+                Color:
+                    rgba: 0, 1, 0, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
